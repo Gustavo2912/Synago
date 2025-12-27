@@ -19,7 +19,7 @@ import OrganizationGuard from "@/components/OrganizationGuard";
 import Landing from "@/pages/Landing";
 import Auth from "@/pages/Auth";
 import Register from "@/pages/Register";
-import InviteAcceptPage from "@/pages/InviteAcceptPage"; 
+import InviteAcceptPage from "@/pages/InviteAcceptPage";
 import ResetPassword from "@/pages/ResetPassword";
 
 import HomePage from "@/pages/home/HomePage";
@@ -39,6 +39,10 @@ import ComCom from "@/pages/ComCom";
 import Settings from "@/pages/Settings";
 import NotFound from "@/pages/NotFound";
 import Invites from "@/pages/Invites";
+
+/* 🔥 FORCE BUILD MARKER 🔥 */
+const BUILD_ID = "VERCEL-BUILD-2025-01-25-01";
+console.log("✅ APP BUILD LOADED:", BUILD_ID);
 
 const queryClient = new QueryClient();
 
@@ -69,6 +73,11 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
           <AppSidebar />
 
           <div className="flex-1 flex flex-col">
+            {/* 🔥 BUILD BANNER (SAFE) */}
+            <div className="w-full text-xs text-center py-1 bg-yellow-100 text-yellow-900">
+              Build: {BUILD_ID}
+            </div>
+
             <header className="h-16 border-b border-border/50 bg-card/95 backdrop-blur-xl flex items-center px-6 sticky top-0 z-10 gap-3 shadow-sm">
               <SidebarTrigger />
 
@@ -111,7 +120,7 @@ const App = () => (
 
         <HashRouter>
           <Routes>
-            <Route path="/reset-password" element={<ResetPassword />}/>
+            <Route path="/reset-password" element={<ResetPassword />} />
           </Routes>
         </HashRouter>
 
@@ -121,10 +130,8 @@ const App = () => (
             <Route path="/" element={<Landing />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/reset-password" element={<ResetPassword />}/>
+            <Route path="/reset-password" element={<ResetPassword />} />
 
-
-            {/* ✅ INVITE ACCEPT FLOW */}
             <Route path="/invite/accept" element={<InviteAcceptPage />} />
 
             {/* -------- Home -------- */}
@@ -229,7 +236,7 @@ const App = () => (
               }
             />
 
-            {/* -------- Donations / Payments / Pledges -------- */}
+            {/* -------- Donations / Pledges / Payments -------- */}
             <Route
               path="/donations"
               element={
@@ -261,7 +268,7 @@ const App = () => (
               }
             />
 
-            {/* -------- Other Modules -------- */}
+            {/* -------- Other -------- */}
             <Route
               path="/yahrzeits"
               element={
@@ -272,7 +279,6 @@ const App = () => (
                 </ProtectedRoute>
               }
             />
-
             <Route
               path="/torah-scholar"
               element={
@@ -283,7 +289,6 @@ const App = () => (
                 </ProtectedRoute>
               }
             />
-
             <Route
               path="/comcom"
               element={
@@ -294,8 +299,6 @@ const App = () => (
                 </ProtectedRoute>
               }
             />
-
-            {/* -------- Settings -------- */}
             <Route
               path="/settings"
               element={
@@ -307,7 +310,6 @@ const App = () => (
               }
             />
 
-            {/* -------- 404 -------- */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </HashRouter>
